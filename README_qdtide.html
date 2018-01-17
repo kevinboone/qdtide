@@ -1,0 +1,111 @@
+<a href="articles.html">&bull; Articles</a><a href="computing_articles.html">&bull; Articles about computing</a><a href="utility_corner.html">&bull; Utility corner</a><p/>
+
+<h1>qdtide</h1>
+
+A quick-and-dirty tide clock<br/>
+Version 0.0.1, March 2017
+
+<h2>What is this?</h2>
+
+<code>qdtide</code> is a very simple command-line utility for Linux
+(and similar) for predicting high and low tides, when all the information
+you have is some prior high tide time. 
+<p/>
+It works on the same principle as a traditional mechanical tide clock -- 
+a clock where the hour hand makes a full cycle in 12.42 hours. Naturally
+it requires calibration, and the calibration will only be useful for
+a specific location and a small region around it.
+<p/>
+Unusually for any kind of predictive technology, a tide clock is generally
+more accurate on average in the long term than the short. 
+In the short term, tides
+are influenced by the position of the moon and the sun, and the weather.
+In the long term, the moon's effect predominates and, as the lunar month
+is pretty constant, the tide behaviour tends to a regular cycle.
+<p/>
+In the short term you have to accept that a tide clock, and this program,
+could easily be wrong by an hour or more.
+ 
+<h2>Building and installing</h2>
+
+The usual:
+
+<pre class="codeblock">
+$ make
+# make install
+</pre>
+
+
+<h2>Calibration</h2>
+
+To use <code>qdtide</code> you need first to calibrate it by entering
+the time of a high tide in
+the (not too distant) past. For example:
+
+<pre class="codeblock">
+$ qdtide --base "7 4 2017 3:15"
+</pre>
+
+The time format is "month day year hour:minute" so, in this case, 7th
+April 2017, at 3:15 AM. The time must be in 24-hour format, although
+the program uses 12-hour format for display by default.
+<p/>
+This "base time" is stored in <code>$HOME/.qdtide.rc</code>, and can be
+used for any date in the future, for a specific location.
+<p/>
+The base time can be based on actual observation, or taken from published
+tide tables for the region -- if these are trustworthy.
+For best results, the base time should be taken at around the time of
+a full or new moon, because these are the times when the solar and lunar
+effects on tide are in alignment. Of course, if you're working by observation
+that might not be practicable. 
+
+<h2>Usage</h2>
+
+With no arguments, <code>qdtide</code> displays the times of tides for
+the current day (assuming that the base calibration time is in the past).
+You can specify a particular date if preferred:
+
+<pre class="codeblock"> 
+qdtide [day [month [year]]]
+</pre>
+
+If either or both of the month or the year are omitted, these default to the 
+current values. For example, 
+
+<pre class="codeblock"> 
+qdtide 20 
+</pre>
+
+shows tide predictions for the 20th day of the current month. 
+<p/>
+Tides are assumed to be semi-diurnal, that is, there will be at most two high 
+and two low tides in a 24-hour period, separated by about six hours.
+If the <code>--diurnal</code> switch is used, there is taken to be
+one high and low tide in a 24-hour period. Most parts of the world have
+semi-diurnal tides, but there is no way to be sure without looking it up,
+or living there. A few places have no tides at all, which makes prediction
+infeasible -- and, of course, unnecessary. 
+<p/>
+Times are displayed in 12-hour format with AM/PM, unless the 
+<code>--tfh</code> option is used.
+
+<h2>Legal, etc</h2>
+
+<code>qdtide</code> is maintained by Kevin Boone, and distributed under the
+terms of the GNU Public Licence, version 3.0. Essentially, you may do
+whatever you like with it, provided the original author is acknowledged, and
+you accept the risks involved in doing so. It goes without saying --
+but I'm going to say it anyway -- that this program should not be used
+for navigation calculations.
+<p/>
+
+<h2>Downloads</h2>
+
+The most up-to-date source will always be found by checking out
+the 
+<a href="http://github.com/kevinboone/qdtide">github repository</a>. 
+Alternatively, download the
+<a href="qdtide.tar.gz">source code bundle</a>.
+
+

@@ -1,0 +1,82 @@
+.\" Copyright (C) 2017 Kevin Boone 
+.\" Permission is granted to any individual or institution to use, copy, or
+.\" redistribute this software so long as all of the original files are
+.\" included, that it is not sold for profit, and that this copyright notice
+.\" is retained.
+.\"
+.TH qdtide 1 "March 2017"
+.SH NAME
+qdtide \- a quick-and-dirty tide clock 
+.SH SYNOPSIS
+.B qdtide 
+.RB [options]\ [day\ [month\ [year]]]
+.PP
+
+.SH DESCRIPTION
+\fIqdtide\fR is simple Linux command-line utility for 
+predicting high and low times, when all the information
+you have is some prior high tide time.
+
+It works on the same principle as a traditional mechanical tide clock -- 
+a clock where the hour hand makes a full cycle in 12.42 hours. Naturally
+it requires calibration, and the calibration will only be useful for
+a specific location and a small region around it.
+
+Unusually for any kind of predictive technology, a tide clock is generally
+more accurate on average in the long term than the short. 
+In the short term, tides
+are influenced by the position of the moon and the sun, and the weather.
+In the long term, the moon's effect predominates and, as the lunar month
+is pretty constant, the tide behaviour tends to a regular cycle.
+
+In the short term you have to accept that a tide clock, and this program,
+could easily be wrong by an hour or more.
+
+
+.SH EXAMPLE
+
+.BI qdtide\ --base\ "7 4 2017 3:15"
+ 
+Calibrate the program by indicating that high tide was at 3:15 (AM) on
+April 7th, 2017. 
+
+.BI qdtide\ 10\ 4 
+
+Display tide predictions for April 10th of the current year. 
+
+
+.SH "OPTIONS"
+.TP
+.BI -b,\-\-base\ "DD\ MM\ YYYY\ HH:MM"
+Calibrate the program with a known high tide time in the past. This
+base time is stored in the file $HOME/.qdtide.rc,
+and \fImust\fR be in 24-hour clock format
+.LP
+.TP
+.BI -d,\-\-diurnal
+Assume only one high and one low tide each day, rather than the more
+common semi-diurnal pattern of two high and two low tides
+.LP
+.TP
+.BI -t,\-\-tfh
+Use twenty-four hour clock times for display
+.LP
+.TP
+.BI -v,\-\-version
+Display version and copyright infomation
+.LP
+
+.SH AUTHOR AND LEGAL
+\fIqdtide\fR
+is maintained by Kevin Boone, and is open source under the
+terms of the GNU Public Licence, version 3.0. 
+There is no warranty of any kind; this program should not be used
+for navigation calculations.
+
+
+.SH FURTHER INFORMATION 
+For more details, see 
+http://kevinboone.net/README_qdtide.html.
+
+
+.\" end of file
